@@ -1,0 +1,50 @@
+<html lang="en" ng-app="app">
+	<head>
+		<meta charset="utf-8">
+		<meta http-equiv="X-UA-Compatible" content="IE=edge"gt;
+		<meta name="description" content="">
+		<meta name="viewport" content="initial-scale=1, maximum-scale=1, user-scalable=no" />
+		<!-- build:css assets/css/app.css -->
+		<link rel="stylesheet" href="assets/css/style.css" />
+	</head>
+<body>
+    
+   
+
+	
+    <!-- endbuild -->
+    <!--<script> document.write(process.versions['electron']) </script> on
+    <script> document.write(process.platform) </script>
+    <script type="text/javascript">
+
+      var fs = require('fs');
+      var file = fs.readFileSync('app/package.json');
+      document.write(file);
+    </script>-->
+	<my-app>Loading...</my-app>
+	
+	
+	
+	 <!-- 1. Load libraries -->
+    
+	<script src="node_modules/angular2/bundles/angular2-polyfills.js"></script>
+    <script src="node_modules/systemjs/dist/system.src.js"></script>
+    <script src="node_modules/rxjs/bundles/Rx.js"></script>
+    <script src="node_modules/angular2/bundles/angular2.dev.js"></script>
+    <!-- endbuild -->
+   
+    <!-- build:app scripts/app.js -->
+    <script>
+      System.config({
+        packages: {        
+          js: {
+            format: 'register',
+            defaultExtension: 'js'
+          }
+        }
+      });
+      System.import('js/boot')
+            .then(null, console.error.bind(console));
+    </script>
+</body>
+</html> 

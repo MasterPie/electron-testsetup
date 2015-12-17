@@ -1,0 +1,23 @@
+{
+  "version": "1.6.0",
+  "compilerOptions": {
+    "target": "es5",
+	"rootDir":"app/src",
+    "module": "system",
+	"moduleResolution": "node",
+    "declaration": false,
+    "noImplicitAny": false,
+    "removeComments": true,
+    "noLib": false,
+    "emitDecoratorMetadata": true,
+    "experimentalDecorators": true,
+    "sourceMap": true,
+    "listFiles": true
+  },
+	"files":[
+		"app/node_modules/angular2/typings/tsd.d.ts",
+		"app/src/app.component.ts",
+		"app/src/app.ts",
+		"app/src/boot.ts"
+	]
+}
