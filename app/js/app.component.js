@@ -18,11 +18,18 @@ System.register(['angular2/core'], function(exports_1) {
         execute: function() {
             AppComponent = (function () {
                 function AppComponent() {
+                    this.fib = "";
                 }
+                AppComponent.prototype.sayMyName = function (val) {
+                    ipc.send("function_exec", val);
+                    this.fib = "started!";
+                };
                 AppComponent = __decorate([
                     core_1.Component({
-                        selector: 'my-app',
-                        template: '<h1>My First Angular 2 App</h1>'
+                        selector: 'my-app'
+                    }),
+                    core_1.View({
+                        templateUrl: 'views/main.html'
                     }), 
                     __metadata('design:paramtypes', [])
                 ], AppComponent);

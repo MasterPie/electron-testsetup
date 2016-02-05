@@ -1,7 +1,22 @@
-import {Component} from 'angular2/core';
+declare var ipc: any;
+
+import {View, Component} from 'angular2/core';
 
 @Component({
-    selector: 'my-app',
-    template: '<h1>My First Angular 2 App</h1>'
+    selector: 'my-app'
 })
-export class AppComponent { }
+@View({
+    templateUrl: 'views/main.html'
+})
+export class AppComponent {
+	fib : string;
+	constructor(){
+		this.fib = "";
+	}
+	
+	sayMyName(val)
+	{
+		ipc.send("function_exec", val);
+		this.fib = "started!";
+	}
+ }

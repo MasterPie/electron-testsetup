@@ -16,3 +16,7 @@ gulp.task('ts', function(done) {
     .pipe(ts(tsProject), undefined, ts.reporter.fullReporter());
   return tsResult.js.pipe(gulp.dest('app/js'));
 });
+
+
+//node-gyp configure --target=0.33.1 --arch=x64 --dist-url=https://atom.io/download/atom-shell
+//node-gyp build

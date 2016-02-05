@@ -35,16 +35,28 @@
    
     <!-- build:app scripts/app.js -->
     <script>
-      System.config({
-        packages: {        
-          js: {
-            format: 'register',
-            defaultExtension: 'js'
-          }
-        }
-      });
-      System.import('js/boot')
-            .then(null, console.error.bind(console));
+		System.config({
+			packages: {        
+				js: {
+					format: 'register',
+					defaultExtension: 'js'
+				}
+			}
+		});
+		System.import('js/boot')
+			.then(null, console.error.bind(console));
+			
+		function do_something_with_result(res)
+		{
+			alert("The nth fibonacci number is: " + res);
+		}
+		
+		var ipc = require('ipc');
+		ipc.on('function_exec_response', function(arg)
+		{
+			console.log(arg);
+			do_something_with_result(arg);
+		});
     </script>
 </body>
 </html> 

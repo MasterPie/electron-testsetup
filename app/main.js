@@ -1,5 +1,10 @@
 // Module to control application life.
 var app = require('app');
+var test = require('../backend/test/build/Release/main_node.node');
+var ipc = require('electron').ipcMain;
+var Promise = require("promise");
+
+//console.log("nth fibonacci is: " + test.get_nth_fibonacci_number(10));
 
 // Module to create native browser window.
 var BrowserWindow = require('browser-window');
@@ -20,7 +25,7 @@ app.on('ready', function () {
     mainWindow = new BrowserWindow({ width: 800, height: 600 });
 
     // and load the index.html of the app.
-    mainWindow.loadUrl('file://' + __dirname + '/index.html');
+    mainWindow.loadURL('file://' + __dirname + '/index.html');
 
     // Open the devtools.
     // mainWindow.openDevTools();
@@ -33,4 +38,27 @@ app.on('ready', function () {
         mainWindow = null;
     });
 
+});
+
+function get_function_result_async(arg)
+{
+	return 	new Promise(function(fulfill, reject)
+	{
+		var res =  test.get_nth_fibonacci_number(arg);
+		fulfill(res);
+	});
+}
+
+// Need a function to take in the function def, args, and callback
+
+// This should take in:
+// function-name:{}
+
+ipc.on('function_exec', function(event, arg) {
+	console.log(arg);
+	mainWindow.setProgressBar(0.5);
+	test.get_nth_fibonacci_number(arg, function(res){
+		event.sender.send('function_exec_response', res);
+		mainWindow.setProgressBar(1);
+	});
 });
